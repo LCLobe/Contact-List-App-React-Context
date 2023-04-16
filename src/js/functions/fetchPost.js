@@ -1,15 +1,17 @@
 const fetchPost = (databaseOrigin, objectToPost) =>{
 
-    //console.log("Post: ", databaseOrigin, objectToPost);
+    //handlePostOK
+    //handlelPostNOK
+    
     fetch(databaseOrigin, {
         method: 'POST',
-        body: JSON.stringify(objectToPost), // data can be a `string` or  an {object} which comes from somewhere further above in our application
+        body: JSON.stringify(objectToPost), 
         headers:{
             'Content-Type': 'application/json'
         }
     })
     .then(res => {
-        if (!res.ok) throw Error(res.statusText);
+        if (res.msg) throw Error(res.statusText);
         return res.json();
     })
     .then(response => console.log('Success:', response))

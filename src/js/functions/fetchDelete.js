@@ -1,6 +1,6 @@
 const fetchDelete = (databaseOrigin, idToDelete) =>{
 
-    fetch(databaseOrigin+"/"+idToDelete, {
+    fetch(databaseOrigin+idToDelete, {
         method: 'DELETE'
     })
     .then(res => {

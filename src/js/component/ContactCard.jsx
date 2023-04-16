@@ -3,12 +3,13 @@ import { ReactDOM } from "react";
 
 import useAppContext from "../store/Context.jsx";
 
-const ContactCard = ({name, email, phone, address, image})=>{
+const ContactCard = ({id, name, email, phone, address, image})=>{
 
     const {store, actions} = useAppContext();
 
     const handleDelete = (event)=>{
         console.log(event.currentTarget);
+        actions.fetchDelete(store.databaseOrigin,id);
     }
 
     const handleEdit = ()=>{

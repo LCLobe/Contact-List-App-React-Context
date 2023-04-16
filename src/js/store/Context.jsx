@@ -13,21 +13,51 @@ const Context = createContext();
 
 export const ContextProvider = ({children}) => {    
 
+    //ENV
     const databaseOrigin ='https://assets.breatheco.de/apis/fake/contact/' ;
     const user = "LCLobe's_agenda";
     const userAgenda = "agenda/"+user;
     const database = databaseOrigin+userAgenda;
 
+    //USESTATE
     const [contacts, setContacts] = useState([]);
+    const [inputData, setInputData] = useState({
+        full_name: "",
+        email: "",
+        agenda_slug: user,
+        address: "",
+        phone: ""
+    })
+    const {full_name, email, address, phone}=inputData
 
+    //HANLDES
+    const handlePost = ()=>{
+
+        const myNewContact = {
+            full_name,
+            email,
+            agenda_slug: user,
+            address,
+            phone
+        }
+        
+        //console.log("Post: ", databaseOrigin, myNewContact);
+        fetchPost(databaseOrigin, myNewContact );
+        fetchGet(database, setContacts);
+    }
+
+
+    //FLUX DEFINITION
     const store = {
         databaseOrigin,
         user, 
         database,
-        contacts    
+        contacts,
+        inputData    
     };
     const actions ={
         setContacts,
+        setInputData,
         fetchGet,
         fetchPost,
         fetchDelete,
@@ -37,9 +67,8 @@ export const ContextProvider = ({children}) => {
         handlePost
     };
 
+    //USEEFFECT
     useEffect(()=>{
-
-        console.log(database);
 
         fetchGet(database, setContacts);
 
