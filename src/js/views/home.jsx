@@ -1,6 +1,5 @@
 import React from "react";
 import { ContextProvider } from "../store/Context.jsx";
-import ReactDOM from 'react-dom';
 
 import Footer from "../component/Footer.jsx";
 import Header from "../component/Header.jsx";
