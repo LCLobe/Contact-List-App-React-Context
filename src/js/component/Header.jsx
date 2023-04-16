@@ -3,7 +3,8 @@ import React from "react";
 const Header = ()=>{
 
     return (
-        <div>   
+        <div className="d-flex justify-content-around my-2">
+            <h1>LCLobe's Agenda</h1>   
             <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add new contact
             </button>

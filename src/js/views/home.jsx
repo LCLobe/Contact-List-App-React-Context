@@ -1,12 +1,11 @@
 import React from "react";
 import { ContextProvider } from "../store/Context.jsx";
+import ReactDOM from 'react-dom';
 
 import Footer from "../component/Footer.jsx";
 import Header from "../component/Header.jsx";
 import ContactsView from "./ContactsView.jsx";
 import ContactModal from  "../component/ContactModal.jsx";
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
 
 //include images into your bundle
 
@@ -14,10 +13,12 @@ import Modal from 'react-modal';
 const Home = () => {
 	return (
 		<ContextProvider >
-			<Header />
-			<ContactModal />
-			<ContactsView />
-			<Footer />
+			<div className="container">
+				<Header />
+				<ContactModal />
+				<ContactsView />
+				<Footer />
+			</div>
 		</ContextProvider>
 	);
 };

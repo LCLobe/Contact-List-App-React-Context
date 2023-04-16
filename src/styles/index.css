@@ -10,3 +10,30 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+.card-image-wrapper {
+    /*box-sizing: content-box;*/
+    max-width: 150px;
+    max-height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 0%;
+    align-items:center;
+}
+img {
+    
+    width: 100%;
+    height: auto;
+
+}
+.card {
+    min-width: 500px;
+    align-items:center;
+}
+.card-buttons {
+    align-items:center;
+}
+
+p {
+    white-space: nowrap;
+}

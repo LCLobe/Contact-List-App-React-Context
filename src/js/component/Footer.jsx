@@ -3,7 +3,7 @@ import React from "react";
 const Footer = ()=> {
 
     return (
-        <div>
+        <div className="d-flex justify-content-center">
             <p>
 				<i className="fas fa-smile-beam"></i>
 				Made by{" "}
