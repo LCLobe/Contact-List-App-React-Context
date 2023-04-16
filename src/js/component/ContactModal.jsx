@@ -1,7 +1,17 @@
 import React from "react";
-import ReactModal from "react-modal";
+
+import useAppContext from "../store/Context.jsx";
+import handlePost from "../functions/handlePost.js";
+import fetchPost from "../functions/fetchPost.js";
 
 const ContactModal = ()=>{
+
+    const {store, actions} = useAppContext();
+
+    // const handlePost = ()=>{
+
+    //     fetchPost(store.database, )
+    // }
 
     return (
         <div className="modal-dialog modal-dialog-centered">   
@@ -15,24 +25,37 @@ const ContactModal = ()=>{
                     <div className="modal-body">
                         <div className="mb-3">
                             <label for="formGroupExampleInput" className="form-label">Full Name</label>
-                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Full Name"></input>
+                            <input type="text" className="form-control" id="formGroupNameInput" placeholder="Full Name"></input>
                         </div>
                         <div className="mb-3">
                             <label for="formGroupExampleInput2" className="form-label">Email</label>
-                            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Email"></input>
+                            <input type="text" className="form-control" id="formGroupEmailInput" placeholder="Email"></input>
                         </div>
                         <div className="mb-3">
                             <label for="formGroupExampleInput" className="form-label">Phone</label>
-                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Phone"></input>
+                            <input type="text" className="form-control" id="formGroupPhoneInput" placeholder="Phone"></input>
                         </div>
                         <div className="mb-3">
                             <label for="formGroupExampleInput2" className="form-label">Address</label>
-                            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Address"></input>
+                            <input type="text" className="form-control" id="formGroupAddressInput" placeholder="Address"></input>
                         </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-primary" onClick={()=>{
+                            
+                            const newContact = {
+                                full_name: document.getElementById("formGroupNameInput").value,
+                                email: document.getElementById("formGroupEmailInput").value,
+                                agenda_slug: store.user,
+                                address:document.getElementById("formGroupPhoneInput").value,
+                                phone: document.getElementById("formGroupAddressInput").value
+                            };
+                            
+                            fetchPost(store.database,newContact );
+                            actions.setContacts(prev => prev.concat(newContact));
+
+                        }}>Save changes</button>
                     </div>
                     </div>
                 </div>
