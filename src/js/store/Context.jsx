@@ -5,9 +5,7 @@ import fetchGet from "../functions/fetchGet.js";
 import fetchPost from "../functions/fetchPost.js"; 
 import fetchDelete from "../functions/fetchDelete.js";
 import fetchPut from "../functions/fetchPut.js";
-import handleDelete from "../functions/handleDelete.js";
-import handleEdit from "../functions/handleEdit.js";
-import handlePost from "../functions/handlePost.js";
+import clearInput from "../functions/clearInput.js";
 
 const Context = createContext();
 
@@ -28,6 +26,8 @@ export const ContextProvider = ({children}) => {
         address: "",
         phone: ""
     })
+    const [tempID, setTempID] = useState(-1);
+
     const {full_name, email, address, phone}=inputData
 
     //HANLDES
@@ -44,6 +44,28 @@ export const ContextProvider = ({children}) => {
         //console.log("Post: ", databaseOrigin, myNewContact);
         fetchPost(databaseOrigin, myNewContact );
         fetchGet(database, setContacts);
+        clearInput(setInputData);
+    }
+
+    const handleDelete = (event)=>{
+        //console.log(event.currentTarget);
+        //fetchDelete(databaseOrigin,this.id);
+    }
+
+    const handlePostEdit = ()=>{
+
+        const myEditedContact = {
+            full_name,
+            email,
+            agenda_slug: user,
+            address,
+            phone
+        }
+        
+        //console.log("Post: ", databaseOrigin, myNewContact);
+        fetchPut(databaseOrigin, myEditedContact, tempID );
+        fetchGet(database, setContacts);
+        clearInput(setInputData);
     }
 
 
@@ -53,18 +75,21 @@ export const ContextProvider = ({children}) => {
         user, 
         database,
         contacts,
-        inputData    
+        inputData,
+        tempID  
     };
     const actions ={
         setContacts,
         setInputData,
+        setTempID,
         fetchGet,
         fetchPost,
         fetchDelete,
         fetchPut,
         handleDelete,
-        handleEdit,
-        handlePost
+        handlePostEdit,
+        handlePost,
+        clearInput
     };
 
     //USEEFFECT

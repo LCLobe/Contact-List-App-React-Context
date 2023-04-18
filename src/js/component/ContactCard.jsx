@@ -1,18 +1,35 @@
 import React from "react";
-import { ReactDOM } from "react";
 
 import useAppContext from "../store/Context.jsx";
 
 const ContactCard = ({id, name, email, phone, address, image})=>{
 
     const {store, actions} = useAppContext();
+    const {databaseOrigin, contacts, user, tempID} = store;
+    const {setInputData, fetchDelete, clearInput, setTempID} = actions;
+    //const {handleDelete, handleEdit} = actions;
 
     const handleDelete = (event)=>{
         console.log(event.currentTarget);
-        actions.fetchDelete(store.databaseOrigin,id);
+        fetchDelete(databaseOrigin,id);
     }
 
     const handleEdit = ()=>{
+
+        //buscar en store.contacts (array) el contacto con la id y meterlos en el objeto
+        const found = contacts.find(element => element.id == id);
+        const myContact = {
+            full_name: found.full_name,
+            email: found.email,
+            agenda_slug: user,
+            address: found.address,
+            phone: found.phone
+        }
+        //meterlos en set input data
+        setInputData(myContact);
+        //abrir el modal se hace con las propiedades {data-bs-toggle="modal" data-bs-target="#exampleModal"} en el boton
+        setTempID(id);
+        
 
     }
     return (
@@ -34,7 +51,7 @@ const ContactCard = ({id, name, email, phone, address, image})=>{
                     </p>
                 </div>
                 <div className="card-buttons d-flex flex-row mx-2 justify-content-between">
-                    <div  className="m-2">
+                    <div  className="m-2" onClick={handleEdit} data-bs-toggle="modal" data-bs-target="#exampleModal2">
                         <i className="fas fa-edit"></i>
                     </div>
                     <div  className="m-2" onClick={handleDelete}>

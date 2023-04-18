@@ -2,19 +2,19 @@ import React from "react";
 
 import useAppContext from "../store/Context.jsx";
 
-const ContactModal = ()=>{
+const ContactModalUpdate = ()=>{
 
     const {store, actions} = useAppContext();
     const {full_name, email, address, phone} = store.inputData;
-    const {setInputData, handlePost} = actions;
+    const {setInputData, handlePostEdit} = actions;
     
     return (
         <div className="modal-dialog modal-dialog-centered">   
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Add a new contact</h1>
+                            <h1 className="modal-title fs-5" id="exampleModal2Label">Add a new contact</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -65,7 +65,7 @@ const ContactModal = ()=>{
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handlePost}>Create contact</button>
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handlePostEdit}>Update contact</button>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ const ContactModal = ()=>{
 
 }
 
-export default ContactModal;
+export default ContactModalUpdate;
 
 
 //dismiss modal no deberia funcionar cuando el post ha dado fallo

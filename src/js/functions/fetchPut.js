@@ -1,6 +1,6 @@
 const fetchPut = (databaseOrigin, objectToPost, idToUpdate) =>{
 
-    fetch(databaseOrigin+"/"+idToUpdate, {
+    fetch(databaseOrigin+idToUpdate, {
         method: 'PUT',
         body: JSON.stringify(objectToPost), // data can be a `string` or  an {object} which comes from somewhere further above in our application
         headers:{
@@ -8,7 +8,7 @@ const fetchPut = (databaseOrigin, objectToPost, idToUpdate) =>{
     }
     })
     .then(res => {
-        if (!res.ok) throw Error(res.statusText);
+        //if (res.msg) throw Error(res.statusText);
         return res.json();
     })
     .then(response => console.log('Success:', response))
