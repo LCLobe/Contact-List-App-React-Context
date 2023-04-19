@@ -1,6 +1,6 @@
 const fetchPut = (databaseOrigin, objectToPost, idToUpdate) =>{
 
-    fetch(databaseOrigin+idToUpdate, {
+    return fetch(databaseOrigin+idToUpdate, {
         method: 'PUT',
         body: JSON.stringify(objectToPost), // data can be a `string` or  an {object} which comes from somewhere further above in our application
         headers:{

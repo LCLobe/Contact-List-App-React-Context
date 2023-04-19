@@ -6,7 +6,8 @@ const ContactModal = ()=>{
 
     const {store, actions} = useAppContext();
     const {full_name, email, address, phone} = store.inputData;
-    const {setInputData, handlePost} = actions;
+    const {editMode} = store;
+    const {setInputData, handlePost, handlePostEdit, handleExitEditMode} = actions;
     
     return (
         <div className="modal-dialog modal-dialog-centered">   
@@ -14,7 +15,7 @@ const ContactModal = ()=>{
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Add a new contact</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">{editMode ? "Modify Contact" : "Add a new contact"}</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -65,7 +66,7 @@ const ContactModal = ()=>{
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handlePost}>Create contact</button>
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={editMode ? handlePostEdit : handlePost}>{editMode ? "Update contact" : "Create contact"}</button>
                         </div>
                     </div>
                 </div>

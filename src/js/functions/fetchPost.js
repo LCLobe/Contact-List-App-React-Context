@@ -3,7 +3,7 @@ const fetchPost = (databaseOrigin, objectToPost) =>{
     //handlePostOK
     //handlelPostNOK
     
-    fetch(databaseOrigin, {
+    return fetch(databaseOrigin, {
         method: 'POST',
         body: JSON.stringify(objectToPost), 
         headers:{

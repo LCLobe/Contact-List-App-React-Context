@@ -6,30 +6,17 @@ const ContactCard = ({id, name, email, phone, address, image})=>{
 
     const {store, actions} = useAppContext();
     const {databaseOrigin, contacts, user, tempID} = store;
-    const {setInputData, fetchDelete, clearInput, setTempID} = actions;
-    //const {handleDelete, handleEdit} = actions;
+    const {setInputData, fetchDelete, clearInput, setTempID, myGetContacts, handleDelete, handleEdit} = actions;
 
-    const handleDelete = (event)=>{
-        console.log(event.currentTarget);
-        fetchDelete(databaseOrigin,id);
+    const myHandleDelete = ()=>{
+        
+        handleDelete(id)
+
     }
 
-    const handleEdit = ()=>{
+    const myHandleEdit = ()=>{
 
-        //buscar en store.contacts (array) el contacto con la id y meterlos en el objeto
-        const found = contacts.find(element => element.id == id);
-        const myContact = {
-            full_name: found.full_name,
-            email: found.email,
-            agenda_slug: user,
-            address: found.address,
-            phone: found.phone
-        }
-        //meterlos en set input data
-        setInputData(myContact);
-        //abrir el modal se hace con las propiedades {data-bs-toggle="modal" data-bs-target="#exampleModal"} en el boton
-        setTempID(id);
-        
+        handleEdit(id)        
 
     }
     return (
@@ -51,10 +38,10 @@ const ContactCard = ({id, name, email, phone, address, image})=>{
                     </p>
                 </div>
                 <div className="card-buttons d-flex flex-row mx-2 justify-content-between">
-                    <div  className="m-2" onClick={handleEdit} data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    <div  className="m-2" onClick={myHandleEdit} data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i className="fas fa-edit"></i>
                     </div>
-                    <div  className="m-2" onClick={handleDelete}>
+                    <div  className="m-2" onClick={myHandleDelete}>
                         <i className="fas fa-trash-alt"></i>
                     </div>
                 </div>

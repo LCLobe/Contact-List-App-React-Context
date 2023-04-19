@@ -10,9 +10,9 @@ const ContactsView = ()=>{
     const {fetchGet, setContacts} = actions; 
     const image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/330px-Dwayne_Johnson_2014_%28cropped%29.jpg'
 
-    useEffect(()=>{
-        fetchGet(database, setContacts);
-    },[contacts])
+    // useEffect(()=>{
+    //     fetchGet(database, setContacts);
+    // },[contacts])
 
     return (
         <div>
