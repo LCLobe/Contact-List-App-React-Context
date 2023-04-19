@@ -1,3 +1,5 @@
+import popAlert from "./popAlert.js";
+
 const fetchDelete = (databaseOrigin, idToDelete) =>{
 
     return fetch(databaseOrigin+idToDelete, {
@@ -7,7 +9,7 @@ const fetchDelete = (databaseOrigin, idToDelete) =>{
         if (!res.ok) throw Error(res.statusText);
         return res.json();
     })
-    .then(response => console.log('Success:', response))
+    .then(response => popAlert("Contact deleted" , "primary"))
     .catch(error => console.error(error));
 }
 

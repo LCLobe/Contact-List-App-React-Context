@@ -4,9 +4,8 @@ import useAppContext from "../store/Context.jsx";
 
 const ContactCard = ({id, name, email, phone, address, image})=>{
 
-    const {store, actions} = useAppContext();
-    const {databaseOrigin, contacts, user, tempID} = store;
-    const {setInputData, fetchDelete, clearInput, setTempID, myGetContacts, handleDelete, handleEdit} = actions;
+    const {actions} = useAppContext();
+    const {handleDelete, handleEdit} = actions;
 
     const myHandleDelete = ()=>{
         

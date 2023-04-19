@@ -1,8 +1,10 @@
+import popAlert from "./popAlert.js";
+
 const fetchPut = (databaseOrigin, objectToPost, idToUpdate) =>{
 
     return fetch(databaseOrigin+idToUpdate, {
         method: 'PUT',
-        body: JSON.stringify(objectToPost), // data can be a `string` or  an {object} which comes from somewhere further above in our application
+        body: JSON.stringify(objectToPost),
         headers:{
             'Content-Type': 'application/json'
     }
@@ -11,7 +13,7 @@ const fetchPut = (databaseOrigin, objectToPost, idToUpdate) =>{
         //if (res.msg) throw Error(res.statusText);
         return res.json();
     })
-    .then(response => console.log('Success:', response))
+    .then(response => popAlert("Contact updated" , "primary"))
     .catch(error => console.error(error));
 }
 

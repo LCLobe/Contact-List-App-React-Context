@@ -5,12 +5,9 @@ const fetchGet = (databaseOrigin, localSetter) =>{
             if (!response.ok) {
                throw Error(response.statusText);
             }
-            // Read the response as json.
              return response.json();
              })
             .then(responseAsJson => {
-            // Do stuff with the JSONified response
-             console.log(responseAsJson);
              localSetter(responseAsJson);
              })
             .catch(error => {

@@ -6,12 +6,14 @@ import fetchPost from "../functions/fetchPost.js";
 import fetchDelete from "../functions/fetchDelete.js";
 import fetchPut from "../functions/fetchPut.js";
 import clearInput from "../functions/clearInput.js";
+import popAlert from "../functions/popAlert.js";
 
 const Context = createContext();
 
 export const ContextProvider = ({children}) => {    
 
     //ENV
+    const image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/330px-Dwayne_Johnson_2014_%28cropped%29.jpg'
     const databaseOrigin ='https://assets.breatheco.de/apis/fake/contact/' ;
     const user = "LCLobe's_agenda";
     const userAgenda = "agenda/"+user;
@@ -38,6 +40,12 @@ export const ContextProvider = ({children}) => {
 
     }
 
+    const clearModalInputs = ()=>{
+
+        return clearInput(setInputData)
+
+    }
+
     //HANLDES
     const handlePost = ()=>{
 
@@ -52,7 +60,7 @@ export const ContextProvider = ({children}) => {
         //console.log("Post: ", databaseOrigin, myNewContact);
         fetchPost(databaseOrigin, myNewContact )
         .then(()=>myGetContacts());
-        clearInput(setInputData);
+        clearModalInputs();
     }
 
     const handleDelete = (id)=>{
@@ -74,7 +82,7 @@ export const ContextProvider = ({children}) => {
         //console.log("Post: ", databaseOrigin, myNewContact);
         fetchPut(databaseOrigin, myEditedContact, tempID )
         .then(()=>myGetContacts());
-        clearInput(setInputData);
+        clearModalInputs();
     }
 
     const handleEdit = (id)=>{
@@ -97,7 +105,8 @@ export const ContextProvider = ({children}) => {
     }
 
     const handleExitEditMode = ()=>{
-
+        //console.log("handleExitEditMode");
+        clearModalInputs();
         return setEditMode(false);
 
     }
@@ -105,6 +114,7 @@ export const ContextProvider = ({children}) => {
 
     //FLUX DEFINITION
     const store = {
+        image,
         databaseOrigin,
         user, 
         database,
@@ -127,7 +137,9 @@ export const ContextProvider = ({children}) => {
         handlePost,
         handleEdit,
         clearInput, 
-        handleExitEditMode
+        handleExitEditMode,
+        clearModalInputs,
+        popAlert
     };
 
     //USEEFFECT

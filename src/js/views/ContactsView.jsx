@@ -6,13 +6,8 @@ import ContactCard from "../component/ContactCard.jsx";
 const ContactsView = ()=>{
 
     const {store, actions} = useAppContext();
-    const {contacts, database} = store;
+    const {contacts, image, database} = store;
     const {fetchGet, setContacts} = actions; 
-    const image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/330px-Dwayne_Johnson_2014_%28cropped%29.jpg'
-
-    // useEffect(()=>{
-    //     fetchGet(database, setContacts);
-    // },[contacts])
 
     return (
         <div>

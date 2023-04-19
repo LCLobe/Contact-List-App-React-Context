@@ -1,7 +1,6 @@
-const fetchPost = (databaseOrigin, objectToPost) =>{
+import popAlert from "./popAlert.js";
 
-    //handlePostOK
-    //handlelPostNOK
+const fetchPost = (databaseOrigin, objectToPost) =>{
     
     return fetch(databaseOrigin, {
         method: 'POST',
@@ -14,7 +13,7 @@ const fetchPost = (databaseOrigin, objectToPost) =>{
         if (res.msg) throw Error(res.statusText);
         return res.json();
     })
-    .then(response => console.log('Success:', response))
+    .then(response => popAlert("Contact created" , "primary"))
     .catch(error => console.error(error));
 }
 

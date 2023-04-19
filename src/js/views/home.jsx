@@ -5,7 +5,6 @@ import Footer from "../component/Footer.jsx";
 import Header from "../component/Header.jsx";
 import ContactsView from "./ContactsView.jsx";
 import ContactModal from  "../component/ContactModal.jsx";
-import ContactModalUpdate from "../component/ContactModalUpdate.jsx";
 
 //include images into your bundle
 
@@ -15,8 +14,8 @@ const Home = () => {
 		<ContextProvider >
 			<div className="container">
 				<Header />
+				<div id="liveAlertPlaceholder"></div>
 				<ContactModal />
-				<ContactModalUpdate />
 				<ContactsView />
 				<Footer />
 			</div>
